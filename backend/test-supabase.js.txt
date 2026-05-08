@@ -1,0 +1,11 @@
+const { saveBrief, getBriefs } = require('./backend/supabase');
+async function test() {
+ const saved = await saveBrief(
+ 'Test objective',
+ { summary: 'Test', gap: 'Test gap' }
+ );
+ console.log('Saved:', saved);
+ const all = await getBriefs();
+ console.log('All briefs:', all);
+}
+test().catch(console.error);

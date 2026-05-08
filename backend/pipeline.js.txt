@@ -1,0 +1,21 @@
+require('dotenv').config();
+const { scrapeCompetitors, discoverURLs } = require('./scraper');
+const { generateBrief } = require('./synthesiser');
+const { saveBrief } = require('./supabase');
+async function runScoutAI(objective, userUrls = []) {
+ console.log('Step 1: Getting competitor URLs...');
+ const urls = userUrls.length > 0 ? userUrls : await discoverURLs(objective);
+ console.log('URLs:', urls);
+ console.log('Step 2: Scraping competitors...');
+ const scraped = await scrapeCompetitors(urls);
+ const successful = scraped.filter(r => !r.error);
+ console.log(`Scraped ${successful.length}/${urls.length} sites`);
+ console.log('Step 3: Generating brief...');
+ const brief = await generateBrief(objective, scraped);
+ if (brief.error) throw new Error(brief.message);
+console.log('Step 4: Saving to Supabase...');
+ const saved = await saveBrief(objective, brief);
+ console.log('Saved with ID:', saved?.id);
+ return brief;
+}
+module.exports = { runScoutAI };
