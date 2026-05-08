@@ -37,7 +37,22 @@ body {
 }
 
 .shimmer-bar-dark {
-  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background: linear-gradient(90deg, #1B3A6B 25%, #2a5a9e 50%, #1B3A6B 75%);
   background-size: 200% 100%;
   animation: shimmer 1.8s infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
 }

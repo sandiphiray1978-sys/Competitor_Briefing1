@@ -32,18 +32,18 @@ function LoadingState() {
     <div className="w-full max-w-2xl mx-auto mt-12 animate-fade-in">
       <div className="flex flex-col items-center gap-6">
         <div className="relative">
-          <div className="w-16 h-16 rounded-full bg-teal-900/50 flex items-center justify-center">
-            <Radar className="w-8 h-8 text-teal-400 animate-spin" style={{ animationDuration: '3s' }} />
+          <div className="w-16 h-16 rounded-full bg-amber-900/40 flex items-center justify-center">
+            <Radar className="w-8 h-8 text-amber-400 animate-spin" style={{ animationDuration: '3s' }} />
           </div>
-          <div className="absolute inset-0 w-16 h-16 rounded-full border-2 border-teal-500/40 animate-ping opacity-30" />
+          <div className="absolute inset-0 w-16 h-16 rounded-full border-2 border-amber-500/40 animate-ping opacity-30" />
         </div>
 
         <div className="text-center">
-          <p className="text-lg font-semibold text-slate-100">ScoutAI is researching</p>
+          <p className="text-lg font-semibold text-gray-100">Analyzing your competitive landscape...</p>
           <div className="flex items-center justify-center gap-1 mt-2">
-            <span className="loading-dot w-2 h-2 rounded-full bg-teal-400 inline-block" />
-            <span className="loading-dot w-2 h-2 rounded-full bg-teal-400 inline-block" />
-            <span className="loading-dot w-2 h-2 rounded-full bg-teal-400 inline-block" />
+            <span className="loading-dot w-2 h-2 rounded-full bg-amber-400 inline-block" />
+            <span className="loading-dot w-2 h-2 rounded-full bg-amber-400 inline-block" />
+            <span className="loading-dot w-2 h-2 rounded-full bg-amber-400 inline-block" />
           </div>
         </div>
 
@@ -54,8 +54,8 @@ function LoadingState() {
           <div className="shimmer-bar-dark h-4 rounded-full w-3/4" />
         </div>
 
-        <p className="text-sm text-slate-400 mt-2">
-          Analyzing competitors, gathering insights, and building your brief...
+        <p className="text-sm text-gray-400 mt-2">
+          Building your strategic brief with AI insights...
         </p>
       </div>
     </div>
@@ -164,7 +164,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
       <HistoryPanel
         entries={historyEntries}
         isOpen={historyOpen}
@@ -174,23 +174,23 @@ function App() {
         activeId={activeHistoryId}
       />
 
-      <div className="fixed inset-0 opacity-[0.04] pointer-events-none text-teal-300" style={{
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none text-yellow-400" style={{
         backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-        backgroundSize: '40px 40px',
+        backgroundSize: '50px 50px',
       }} />
 
       <div className={`relative min-h-screen flex flex-col items-center px-4 py-16 transition-all duration-300 ${historyOpen ? 'sm:pl-[340px]' : ''}`}>
         {/* Header */}
         <div className={`text-center transition-all duration-500 ${appState === 'results' ? 'mb-8' : 'mb-10 mt-auto'}`}>
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center shadow-lg shadow-teal-600/20">
-              <Radar className="w-5 h-5 text-white" />
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#F2A900] to-amber-600 flex items-center justify-center shadow-lg shadow-amber-600/30">
+              <Radar className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-white tracking-tight">ScoutAI</span>
+            <span className="text-3xl font-bold text-white tracking-tight">ScoutAI</span>
           </div>
           {appState !== 'results' && (
-            <p className="text-slate-400 text-base max-w-md mx-auto leading-relaxed font-bold">
-              Get structured competitive intelligence briefs in minutes.
+            <p className="text-gray-400 text-base max-w-md mx-auto leading-relaxed font-medium">
+              Competitive intelligence briefs powered by AI analysis.
             </p>
           )}
         </div>
@@ -200,33 +200,33 @@ function App() {
           {appState === 'input' && (
             <form
               onSubmit={handleSubmit}
-              className="w-full max-w-2xl mx-auto bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-2xl shadow-black/20 border border-slate-700/60 p-8 transition-all duration-300"
+              className="w-full max-w-2xl mx-auto bg-gray-800/60 backdrop-blur-md rounded-2xl shadow-2xl shadow-black/40 border border-gray-700/50 p-8 transition-all duration-300"
             >
               <label
                 htmlFor="question"
-                className="block text-sm font-semibold text-slate-200 mb-2"
+                className="block text-sm font-semibold text-gray-100 mb-3"
               >
                 What do you want to know about your competitors?
               </label>
               <div className="relative">
-                <Search className="absolute left-4 top-4 w-5 h-5 text-slate-500 pointer-events-none" />
+                <Search className="absolute left-4 top-4 w-5 h-5 text-gray-500 pointer-events-none" />
                 <textarea
                   id="question"
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}
                   placeholder="e.g. How does Notion's pricing compare to Coda and Slite for teams of 50+? What are their key differentiators?"
-                  className="w-full min-h-[140px] pl-12 pr-4 py-3.5 rounded-xl border border-slate-600 bg-slate-900/60 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 resize-y transition-all text-[15px] leading-relaxed"
+                  className="w-full min-h-[140px] pl-12 pr-4 py-3.5 rounded-xl border border-gray-600 bg-gray-900/40 text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/60 resize-y transition-all text-[15px] leading-relaxed"
                 />
               </div>
 
               <div className="mt-6">
                 <label
                   htmlFor="urls"
-                  className="flex items-center gap-1.5 text-sm font-medium text-slate-400 mb-2"
+                  className="flex items-center gap-1.5 text-sm font-medium text-gray-400 mb-2"
                 >
                   <Globe className="w-3.5 h-3.5" />
                   Paste specific URLs
-                  <span className="text-slate-500 font-normal">(optional)</span>
+                  <span className="text-gray-500 font-normal">(optional)</span>
                 </label>
                 <input
                   id="urls"
@@ -234,20 +234,20 @@ function App() {
                   value={urls}
                   onChange={(e) => setUrls(e.target.value)}
                   placeholder="https://competitor.com/pricing, https://..."
-                  className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-900/60 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition-all text-sm"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-gray-900/40 text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/60 transition-all text-sm"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={!question.trim()}
-                className="mt-8 w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-teal-600 text-white font-semibold text-base shadow-lg shadow-teal-600/25 hover:bg-teal-500 hover:shadow-teal-500/30 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none transition-all duration-200"
+                className="mt-8 w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#F2A900] to-amber-600 text-gray-950 font-semibold text-base shadow-lg shadow-amber-600/30 hover:shadow-amber-600/50 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none transition-all duration-200"
               >
                 Generate Brief
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              <p className="text-center text-xs text-slate-500 mt-4">
+              <p className="text-center text-xs text-gray-500 mt-4">
                 Typically takes 1-3 minutes depending on scope
               </p>
             </form>
@@ -261,7 +261,7 @@ function App() {
               <div className="flex justify-center">
                 <button
                   onClick={handleReset}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-slate-300 bg-slate-800 border border-slate-600 shadow-sm hover:bg-slate-700 hover:border-slate-500 active:scale-[0.98] transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-gray-300 bg-gray-800 border border-gray-700 shadow-sm hover:bg-gray-700 hover:border-gray-600 active:scale-[0.98] transition-all"
                 >
                   <RotateCcw className="w-4 h-4" />
                   New Research
